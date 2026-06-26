@@ -1,0 +1,45 @@
+digraph pipeline {
+    rankdir=LR;
+    compound=true;
+    bgcolor="white";
+    labelloc="t";
+    fontname="Helvetica-Bold";
+    // fontsize=20;
+    // label="Classical Segmentation Pipeline for Brain Tumour Detection (MRI, LGG Dataset)";
+
+    node [shape=box, style="rounded,filled", fontname="Helvetica",
+          fontsize=30, margin="0.5,0.5", color="#2c5f7c", penwidth=2];
+    edge [color="#39566b", penwidth=2, arrowsize=0.8];
+
+    // ---- Main flow ----
+    input   [label="MRI Image", fillcolor="#d7e9f3"];
+    pre     [label="Preprocessing", fillcolor="#d7e9f3"];
+    otsu    [label="Multi-Otsu Threshold", fillcolor="#d7e9f3"];
+
+    // ---- Two methods being compared ----
+    subgraph cluster_methods {
+        // label="Two methods compared";
+        // fontname="Helvetica-Bold";
+        // fontsize=13;
+        color="#9bbccf";
+        style="rounded,dashed";
+
+        mB [label="Otsu + Post-processing", fillcolor="#fde9d0"];
+        anchor [shape=point, style=invis, width=0.01, height=0.01, label=""];
+        mA [label="Otsu only", fillcolor="#fde9d0"];
+
+        // stack the two methods with an invisible centre anchor between them
+        { rank=same; mB; anchor; mA; }
+    }
+
+    report  [label="Results", fillcolor="#d7e9f3"];
+    eval    [label="Evaluation", fillcolor="#d9efd9"];
+
+    // ---- Edges ----
+    input -> pre -> otsu;
+
+    otsu -> anchor [lhead=cluster_methods];
+    anchor -> report [ltail=cluster_methods];
+
+    report -> eval;
+}

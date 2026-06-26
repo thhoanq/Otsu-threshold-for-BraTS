@@ -1,0 +1,7 @@
+param,value,dice_mean,dice_std
+otsu + hậu xử lý: số vòng morphology,0,0.24528307230290933,0.36441081629968597
+otsu + hậu xử lý: số vòng morphology,1,0.24542664263605113,0.3645580373978868
+otsu + hậu xử lý: số vòng morphology,2,0.34119085495696017,0.39194702204535115
+otsu + hậu xử lý: số vòng morphology,3,0.36043325879189186,0.38674126311742435
+otsu + hậu xử lý: số vòng morphology,4,0.3767221356622617,0.3754297467271432
+otsu + hậu xử lý: số vòng morphology,5,0.3709341660987221,0.37484434308291936
