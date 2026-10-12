@@ -14,7 +14,7 @@ digraph pipeline {
     // ---- Main flow ----
     input   [label="MRI Image", fillcolor="#d7e9f3"];
     pre     [label="Preprocessing", fillcolor="#d7e9f3"];
-    otsu    [label="Multi-Otsu Threshold", fillcolor="#d7e9f3"];
+    // otsu    [label="Multi-Otsu Threshold", fillcolor="#d7e9f3"];
 
     // ---- Two methods being compared ----
     subgraph cluster_methods {
@@ -36,9 +36,9 @@ digraph pipeline {
     eval    [label="Evaluation", fillcolor="#d9efd9"];
 
     // ---- Edges ----
-    input -> pre -> otsu;
+    input -> pre;
 
-    otsu -> anchor [lhead=cluster_methods];
+    pre -> anchor [lhead=cluster_methods];
     anchor -> report [ltail=cluster_methods];
 
     report -> eval;
